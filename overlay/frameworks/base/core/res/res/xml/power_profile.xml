@@ -42,7 +42,6 @@
     </array>
     <item name="cpu.idle">3.17</item>
     <item name="cpu.awake">20.3</item>
-    <item name="wakeup.power">0.15</item>
     <array name="cpu.active">
         <value>595</value>
         <value>516</value>
