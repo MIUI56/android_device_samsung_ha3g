@@ -19,6 +19,9 @@ include device/samsung/universal5420-common/BoardConfigCommon.mk
 
 LOCAL_PATH := device/samsung/ha3g
 
+# Include path
+TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := ha3g
 
