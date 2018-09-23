@@ -110,8 +110,12 @@ vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
 lib/libgnustl_shared.so
 
 # RIL
-lib/libaudio-ril.so
+# cbd, from boot.img and pinned to stop removal when extracting from system image
+bin/cbd|0262101eaeb39ad494064a71ae5c0bd1f50878c9c1d5374de1e0fb98cf933cb6
+etc/plmn_delta.bin
+etc/plmn_se13.bin
 lib/libsec-ril.so
+lib/libaudio-ril.so
 
 # Samsung Exynos5 SoC series FIMC-IS driver firmware
 vendor/firmware/fimc_is_fw2_3L2.bin
