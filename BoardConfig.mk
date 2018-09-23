@@ -25,6 +25,9 @@ TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
 # Assert
 TARGET_OTA_ASSERT_DEVICE := ha3g
 
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+
 # Kernel
 TARGET_KERNEL_CONFIG := lineageos_ha3g_defconfig
 
