@@ -36,3 +36,6 @@ PRODUCT_COPY_FILES += \
 
 # Inherit from universal5420-common
 $(call inherit-product, device/samsung/universal5420-common/device-common.mk)
+
+# call the proprietary setup
+$(call inherit-product-if-exists, vendor/samsung/ha3g/ha3g-vendor.mk)
