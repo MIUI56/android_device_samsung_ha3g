@@ -129,7 +129,7 @@ bin/sensorhubservice
 lib/libsensorhub.so
 lib/libsensorhubservice.so
 lib/hw/sensorhubs.universal5420.so
-lib/hw/sensors.universal5420.so
+lib/hw/sensors.universal5420.so:lib/sensors.universal5420.so
 lib/libsensirion_h_3.so
 
 # WiFi - Firmware
