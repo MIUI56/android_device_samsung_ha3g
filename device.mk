@@ -19,10 +19,16 @@ LOCAL_PATH := device/samsung/ha3g
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Audio
 PRODUCT_PACKAGES += \
+     android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
     libtinyxml \
     audio.primary.universal5420 \
     libtinyalsa

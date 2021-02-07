@@ -21,13 +21,18 @@ COMMON_PATH := device/samsung/exynos5420-common
 BOARD_VENDOR := samsung
 TARGET_SOC := exynos5420
 
+# Audio HAL variant
+TARGET_AUDIOHAL_VARIANT := samsung
+
+
 # Radio
 BOARD_PROVIDES_LIBRIL := true
-
+# hardware/samsung/ril
 BOARD_MODEM_TYPE := xmm6360
 # we need define it (because audio.primary.universal5420.so requires it)
 BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
-
+# RIL.java overwrite
+BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
@@ -51,7 +56,7 @@ BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 BOARD_USES_GSC_VIDEO := true
 
 # Include path
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
 
 # NFC
 BOARD_HAVE_NFC := true
