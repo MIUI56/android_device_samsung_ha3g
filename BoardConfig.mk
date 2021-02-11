@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,69 +15,22 @@
 #
 
 LOCAL_PATH := device/samsung/ha3g
-COMMON_PATH := device/samsung/exynos5420-common
-
-# Platform
-BOARD_VENDOR := samsung
-TARGET_SOC := exynos5420
-
-# Audio HAL variant
-TARGET_AUDIOHAL_VARIANT := samsung
-
-
-# Radio
-BOARD_PROVIDES_LIBRIL := true
-# hardware/samsung/ril
-BOARD_MODEM_TYPE := xmm6360
-# we need define it (because audio.primary.universal5420.so requires it)
-BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
-# RIL.java overwrite
-BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
-
-# Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
-
-# Bootloader
-TARGET_OTA_ASSERT_DEVICE := ha3g
-
-# Kernel
-TARGET_KERNEL_CONFIG := lineageos_ha3g_defconfig
-
-# IR Blaster
-IR_HAS_ONE_FREQ_RANGE := true
-
-# Battery
-RED_LED_PATH := "/sys/class/leds/led_r/brightness"
-GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
-BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
-BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
-
-# HDMI
-BOARD_USES_GSC_VIDEO := true
 
 # Include path
-TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
-# NFC
-BOARD_HAVE_NFC := true
-BOARD_NFC_HAL_SUFFIX := universal5420
+# Kernel
+TARGET_KERNEL_CONFIG := lineageos_defconfig
 
-# Partitions
-BOARD_BOOTIMAGE_PARTITION_SIZE := 11534336
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 13631488
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2398552064
-# userdata = 27912056832 = (27912073216 - 16384 <encryption footer>)
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 27912056832
-BOARD_CACHEIMAGE_PARTITION_SIZE := 309616640
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_FLASH_BLOCK_SIZE := 131072
+# Properties
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
-# SELinux
-BOARD_SEPOLICY_DIRS += device/samsung/exynos5420-common/sepolicy
+# RIL
+BOARD_MODEM_TYPE := xmm7260
+BOARD_PROVIDES_LIBRIL := true
 
-# Camera: portrait orientation
-BOARD_CAMERA_FRONT_ROTATION := 270
-BOARD_CAMERA_BACK_ROTATION := 90
+# Recovery
+TARGET_OTA_ASSERT_DEVICE := ha3g,ha3g
 
-# Inherit from exynos5420-common
+# Inherit common board flags
 include device/samsung/exynos5420-common/BoardConfigCommon.mk
