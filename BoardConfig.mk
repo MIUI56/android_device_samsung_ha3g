@@ -46,5 +46,9 @@ BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6360
 BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 
+# Shims
+TARGET_LD_SHIM_LIBS += \
+    /system/bin/gpsd|/system/lib/libshim_dmitry_gps.so
+
 # Inherit from the proprietary version
 -include vendor/samsung/ha3g/BoardConfigVendor.mk
