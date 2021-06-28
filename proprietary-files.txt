@@ -1,7 +1,7 @@
 # RIL
-bin/cbd
-lib/libaudio-ril.so
-lib/libsec-ril.so
+vendor/bin/cbd
+vendor/lib/libaudio-ril.so
+vendor/lib/libsec-ril.so
 
 # WiFi - Firmware
 etc/wifi/bcmdhd_apsta.bin
@@ -17,16 +17,16 @@ etc/wifi/nvram_net.txt_semco3rd
 etc/wifi/nvram_net.txt_wisol
 
 # GPS
-bin/gpsd
-lib/hw/gps.universal5420.so
-lib/libwrappergps.so
+vendor/bin/gpsd
+vendor/lib/hw/gps.universal5420.so
+vendor/lib/libwrappergps.so
 
 # Prebuilt Audio and Samsung sound effects. Because of the Yamaha chip
-lib/hw/audio_policy.universal5420.so
-lib/hw/audio.primary.universal5420.so:lib/hw/audio.primary.vendor.universal5420.so
-lib/libymc_codecctrl.so
-lib/libymc_config.so
-lib/libsamsungSoundbooster_ext.so
+vendor/lib/hw/audio_policy.universal5420.so
+vendor/lib/hw/audio.primary.universal5420.so:lib/hw/audio.primary.vendor.universal5420.so
+vendor/lib/libymc_codecctrl.so
+vendor/lib/libymc_config.so
+vendor/lib/libsamsungSoundbooster_ext.so
 lib/lib_Samsung_Resampler.so
 lib/lib_soundaliveresampler.so
 lib/libsamsungRecord.so

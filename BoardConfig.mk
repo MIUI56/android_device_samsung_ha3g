@@ -15,7 +15,6 @@
 #
 
 LOCAL_PATH := device/samsung/ha3g
-COMMON_PATH := device/samsung/exynos5420-common
 
 # Platform
 BOARD_VENDOR := samsung
@@ -29,10 +28,6 @@ TARGET_AUDIOHAL_VARIANT := samsung
 BOARD_PROVIDES_LIBRIL := true
 # hardware/samsung/ril
 BOARD_MODEM_TYPE := xmm6360
-# we need define it (because audio.primary.universal5420.so requires it)
-BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
-# RIL.java overwrite
-BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
@@ -73,11 +68,44 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/samsung/exynos5420-common/sepolicy
+BOARD_SEPOLICY_DIRS += device/samsung/ha3g/sepolicy
 
 # Camera: portrait orientation
 BOARD_CAMERA_FRONT_ROTATION := 270
 BOARD_CAMERA_BACK_ROTATION := 90
 
-# Inherit from exynos5420-common
-include device/samsung/exynos5420-common/BoardConfigCommon.mk
+
+# HIDL
+DEVICE_MANIFEST_FILE += $(LOCAL_PATH)/manifest.xml
+
+  # Legacy BLOB Support
+TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
+    /system/vendor/bin/hw/rild=27
+
+# Network Routing
+TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
+
+# Shims
+TARGET_LD_SHIM_LIBS += \
+    /vendor/bin/gpsd|/vendor/lib/libshim_gps.so
+
+# Display
+TARGET_SCREEN_DENSITY := 480
+
+# Inherit from universal5420-common
+include device/samsung/universal5420-common/BoardConfigCommon.mk
+
+# Inherit from the proprietary version
+include vendor/samsung/ha3g/BoardConfigVendor.mk
+
+# NFC
+include device/samsung/ha3g/nfc/bcm2079x/board.mk
+
+# Input device
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc 
+\
+    $(LOCAL_PATH)/configs/idc/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
+# Keylayouts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl

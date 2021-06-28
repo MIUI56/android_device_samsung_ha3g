@@ -16,105 +16,68 @@
 
 LOCAL_PATH := device/samsung/ha3g
 
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+# GPS
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/gps.xml
 
-# Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml
 
-# Audio
+# Ramdisk
 PRODUCT_PACKAGES += \
-     android.hardware.audio@2.0-impl \
-    android.hardware.audio.effect@2.0-impl \
-    audio.a2dp.default \
-    audio.usb.default \
-    audio.r_submix.default \
-    libtinyxml \
-    audio.primary.universal5420 \
-    libtinyalsa
+    init.baseband.rc \
+    init.target.rc
+
+# Radio
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full \
+    libxml2 \
+    rild \
+    libril \
+    libreference-ril \
+    android.hardware.radio@1.0 \
+    android.hardware.radio.deprecated@1.0
+
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
-    $(LOCAL_PATH)/configs/audio/ysound.xml:system/etc/ysound.xml
+    $(LOCAL_PATH)/configs/init/rild.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild.legacy.rc
+# Shims
+PRODUCT_PACKAGES += \
+    libshim_gps
+
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2016-11-01
+# System properties
+include device/samsung/ha3g/system_prop
+
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay \
+ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS +=  device/samsung/ha3g/lineage-sdk 
+
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := xlarge PRODUCT_AAPT_PREF_CONFIG := xhdpi
+# A list of dpis to select prebuilt apk, in precedence order.
+PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi
+
+
+# Audio
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/audio/mixer_paths_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_0.xml 
+\
+    $(DEVICE_PATH)/configs/audio/ysound.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ysound.xml
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-# Display
-PRODUCT_PACKAGES += \
-    SamsungServiceMode
+# call the proprietary setup
+$(call inherit-product, vendor/samsung/ha3g/ha3g-vendor.mk)
 
-# Macloader
-PRODUCT_PACKAGES += \
-    macloader
+# Inherit from universal5420-common
+$(call inherit-product, device/samsung/universal5420-common/device-common.mk)
 
-# GPS
-PRODUCT_PACKAGES += \
-    libdmitry
-
-# GPS
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps/gps.cer:system/etc/gps.cer \
-    $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
-
-# Input device
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc \
-    $(LOCAL_PATH)/configs/idc/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
-
-# Keylayouts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
 
 # NFC
-PRODUCT_PACKAGES += \
-    nfc_nci.bcm2079x.universal5420 \
-    NfcNci \
-    Tag \
-    com.android.nfc_extras
-
-# NFCEE access control + configuration
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
-    $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    $(LOCAL_PATH)/configs/nfc/libnfc-brcm-20791b04.conf:system/etc/libnfc-brcm-20791b04.conf \
-    $(LOCAL_PATH)/configs/nfc/libnfc-brcm-20791b05.conf:system/etc/libnfc-brcm-20791b05.conf
-
-# Permissions
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
-    frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
-
-# Ramdisk
-PRODUCT_PACKAGES += \
-    fstab.universal5420 \
-    init.target.rc \
-    init.baseband.rc \
-    ueventd.universal5420.rc
-
-# Radio
-PRODUCT_PACKAGES += \
-    libril \
-    librilutils \
-    rild \
-    libxml2 \
-    libprotobuf-cpp-full \
-    modemloader
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.carrier=unknown
-
-# call the proprietary setup
-$(call inherit-product-if-exists, vendor/samsung/ha3g/ha3g-vendor.mk)
-
-# Import the common tree changes
-include device/samsung/exynos5420-common/exynos5420.mk
-
+$(call inherit-product, device/samsung/ha3g/nfc/bcm2079x/product.mk)
