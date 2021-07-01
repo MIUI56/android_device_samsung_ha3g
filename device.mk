@@ -49,24 +49,25 @@ PRODUCT_PACKAGES += \
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lineage.build.vendor_security_patch=2016-11-01
+
 # System properties
-include device/samsung/ha3g/system_prop
+include device/samsung/ha3g/system.prop
+
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay \
- PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS +=  device/samsung/ha3g/lineage-sdk 
+DEVICE_PACKAGE_OVERLAYS += device/samsung/ha3g/overlay \
+ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS +=  device/samsung/ha3g/overlay-lineage 
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := xlarge PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_AAPT_CONFIG := xlarge 
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 # A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi
 
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/audio/mixer_paths_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_0.xml 
-\
-    $(DEVICE_PATH)/configs/audio/ysound.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ysound.xml
+    device/samsung/ha3g/configs/audio/mixer_paths_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_0.xml  
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920

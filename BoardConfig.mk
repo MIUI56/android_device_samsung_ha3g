@@ -14,7 +14,8 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
+DEVICE_PATH := device/samsung/ha3g
+ LOCAL_PATH := device/samsung/ha3g
 
 # Platform
 BOARD_VENDOR := samsung
@@ -103,9 +104,8 @@ include device/samsung/ha3g/nfc/bcm2079x/board.mk
 
 # Input device
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc 
-\
-    $(LOCAL_PATH)/configs/idc/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
+    $(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:$(TARGET_COPY_OUT_SYSTEM)/usr/idc/Synaptics_HID_TouchPad.idc \
+     $(LOCAL_PATH)/configs/idc/sec_e-pen.idc:$(TARGET_COPY_OUT_SYSTEM)/usr/idc/sec_e-pen.idc
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
+    $(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/sec_touchkey.kl
