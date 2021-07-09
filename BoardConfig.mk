@@ -27,11 +27,8 @@ BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_PREBUILT_ELF_FILES := true
 BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
 
-
-
-
-
-
+# Display
+TARGET_SCREEN_DENSITY := 480
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := ha3g
@@ -69,7 +66,8 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
 TARGET_USES_MKE2FS := true
 BOARD_ROOT_EXTRA_FOLDERS := firmware firmware-modem
 
-
+# Filesystem
+TARGET_FS_CONFIG_GEN += $(DEVICE_PATH)/config.fs
 
 
 # RIL
@@ -81,9 +79,28 @@ BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 TARGET_LD_SHIM_LIBS += \
     /system/bin/gpsd|/system/lib/libshim_dmitry_gps.so
 
+# Camera: portrait orientation
+BOARD_CAMERA_FRONT_ROTATION := 270
+BOARD_CAMERA_BACK_ROTATION := 90
 
+# Battery
+RED_LED_PATH := "/sys/class/leds/led_r/brightness" 
+GREEN_LED_PATH := "/sys/class/leds/led_g/brightness" 
+BLUE_LED_PATH := "/sys/class/leds/led_b/brightness" 
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
+# HDMI
+BOARD_HDMI_INCAPABLE := true
 
+# NFC
+BOARD_HAVE_NFC := true
+BOARD_NFC_HAL_SUFFIX := universal5420
+
+# SELinux
+BOARD_SEPOLICY_DIRS += device/samsung/ha3g/sepolicy
+
+# NFC
+include device/samsung/ha3g/nfc/bcm2079x/board.mk
 
 
 # Inherit from the proprietary version
