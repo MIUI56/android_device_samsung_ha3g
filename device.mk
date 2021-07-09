@@ -14,10 +14,10 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
+DEVICE_PATH := device/samsung/ha3g
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
@@ -46,12 +46,13 @@ TARGET_SCREEN_WIDTH := 1080
 
 # GPS
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/gps.xml
+    $(DEVICE_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/gps.xml
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml
-
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml 
+	
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.baseband.rc \
@@ -78,7 +79,7 @@ PRODUCT_COPY_FILES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init/rild.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild.legacy.rc
+    $(DEVICE_PATH)/configs/init/rild.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild.legacy.rc
 
 # Shims
 PRODUCT_PACKAGES += \
@@ -89,7 +90,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.lineage.build.vendor_security_patch=2016-01-01
 
 # System properties
--include $(LOCAL_PATH)/system_prop.mk
+-include $(DEVICE_PATH)/system_prop.mk
 
 # Shipping API level
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_k.mk)
