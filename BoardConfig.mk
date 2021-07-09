@@ -41,6 +41,7 @@ TARGET_KERNEL_CONFIG := lineageos_ha3g_defconfig
 
 # HIDL
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
+DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/compatibility_matrix.xml
 
 # Legacy BLOB Support
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
@@ -68,7 +69,6 @@ BOARD_ROOT_EXTRA_FOLDERS := firmware firmware-modem
 
 # Filesystem
 TARGET_FS_CONFIG_GEN += $(DEVICE_PATH)/config.fs
-
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
