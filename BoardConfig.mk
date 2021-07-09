@@ -67,6 +67,9 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/firmware_mnt:/firmware \
     /mnt/vendor/persist:/persist
 TARGET_USES_MKE2FS := true
+BOARD_ROOT_EXTRA_FOLDERS := firmware firmware-modem
+
+
 
 
 # RIL
