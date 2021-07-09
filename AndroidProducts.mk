@@ -18,3 +18,9 @@ LOCAL_PATH := device/samsung/ha3g
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/lineage_ha3g.mk
+	
+	
+COMMON_LUNCH_CHOICES := \
+    ha3g-user \
+    ha3g-userdebug \
+    ha3g-eng
