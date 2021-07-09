@@ -104,3 +104,6 @@ $(call inherit-product, device/samsung/universal5420-common/device-common.mk)
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/samsung/ha3g/ha3g-vendor.mk)
+
+# NFC
+$(call inherit-product, device/samsung/ha3g/nfc/bcm2079x/product.mk)
