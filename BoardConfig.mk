@@ -17,10 +17,21 @@
 # Inherit from universal5420-common
 include device/samsung/universal5420-common/BoardConfigCommon.mk
 
-LOCAL_PATH := device/samsung/ha3g
+DEVICE_PATH := device/samsung/ha3g
 
 # Include path
-TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH += $(DEVICE_PATH)/include
+
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_PREBUILT_ELF_FILES := true
+BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
+
+
+
+
+
+
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := ha3g
@@ -32,7 +43,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 TARGET_KERNEL_CONFIG := lineageos_ha3g_defconfig
 
 # HIDL
-DEVICE_MANIFEST_FILE += $(LOCAL_PATH)/manifest.xml
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
 # Legacy BLOB Support
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
@@ -59,6 +70,11 @@ BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 # Shims
 TARGET_LD_SHIM_LIBS += \
     /system/bin/gpsd|/system/lib/libshim_dmitry_gps.so
+
+
+
+
+
 
 # Inherit from the proprietary version
 -include vendor/samsung/ha3g/BoardConfigVendor.mk

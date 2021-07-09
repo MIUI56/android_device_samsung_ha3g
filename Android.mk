@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
+LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter ha3g,$(TARGET_DEVICE)),)
 
