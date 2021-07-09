@@ -1,2 +1,4 @@
-# rootfs
-/firmware-modem                                         u:object_r:firmware_file:s0
+# Root folders
+/firmware(/.*)?               u:object_r:firmware_file:s0
+/firmware-modem(/.*)?         u:object_r:firmware_file:s0
+
