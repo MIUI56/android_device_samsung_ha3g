@@ -27,11 +27,22 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=480
 
-# Radio
+# Modem
 PRODUCT_PROPERTY_OVERRIDES += \
-    telephony.lteOnCdmaDevice=0 \
     keyguard.no_require_sim=true \
-    rild.libpath=/system/lib/libsec-ril.so \
+    ro.com.android.dataroaming=false \
+    rild.libpath=/vendor/lib/libsec-ril.so \
     rild.libargs=-d /dev/ttyS0 \
-    ro.telephony.default_network=9 \
-    ro.telephony.mms_data_profile=5
+    ro.ril.telephony.mqanelements=6 \
+    ro.telephony.ril_class=SamsungExynosRIL
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.add_power_save=1 \
+    telephony.lteOnCdmaDevice=0 \
+    ro.telephony.default_network=0 \
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ril.hsxpa=1 \
+    ro.ril.gprsclass=10
+
