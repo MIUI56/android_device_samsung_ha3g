@@ -13,9 +13,9 @@ vendor/firmware/bcm4335_V0093.0400.hcd
 lib/liboemcrypto.so
 
 # GPS
-bin/gpsd
-lib/hw/gps.universal5420.so
-lib/libwrappergps.so
+vendor/bin/gpsd
+vendor/lib/hw/gps.universal5420.so
+vendor/lib/libwrappergps.so
 
 # MobiCore
 app/mcRegistry/00060308060501020000000000000000.tlbin
@@ -111,11 +111,11 @@ lib/libgnustl_shared.so
 
 # RIL
 # cbd, from boot.img and pinned to stop removal when extracting from system image
-bin/cbd|0262101eaeb39ad494064a71ae5c0bd1f50878c9c1d5374de1e0fb98cf933cb6
-etc/plmn_delta.bin
-etc/plmn_se13.bin
-lib/libsec-ril.so
-lib/libaudio-ril.so
+vendor/bin/cbd|0262101eaeb39ad494064a71ae5c0bd1f50878c9c1d5374de1e0fb98cf933cb6
+vendor/etc/plmn_delta.bin
+vendor/etc/plmn_se13.bin
+vendor/lib/libsec-ril.so
+vendor/lib/libaudio-ril.so
 
 # Samsung Exynos5 SoC series FIMC-IS driver firmware
 vendor/firmware/fimc_is_fw2_3L2.bin
