@@ -1,4 +1,4 @@
-import /vendor/etc/init/hw/init.baseband.rc
+import /system/vendor/etc/init/hw/init.baseband.rc
 
 on init
 
@@ -32,7 +32,7 @@ on post-fs-data
     chown system system /sys/class/sec/led/led_lowpower
 
 # Sensorhub service
-service sensorhubservice /system/vendor/bin/sensorhubservice
+service sensorhubservice /system/bin/sensorhubservice
     class main
     user system
     group input
