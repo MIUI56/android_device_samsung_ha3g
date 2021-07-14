@@ -78,8 +78,7 @@ BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 
 # Bionic
 TARGET_LD_SHIM_LIBS := \
-    /system/vendor/bin/gpsd|libsamsung_symbols.so
-
+ /system/vendor/lib/libexynoscamera.so|libsamsung_symbols.so:/system/vendor/bin/gpsd|libdmitry.so:/system/vendor/lib/libsec-ril.so|libsamsung_symbols.so
 
 # Camera: portrait orientation
 BOARD_CAMERA_FRONT_ROTATION := 270

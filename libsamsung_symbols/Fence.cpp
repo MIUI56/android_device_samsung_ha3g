@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-/* status_t Parcel::writeString16 */
-extern "C" int _ZN7android6Parcel13writeString16EPKDsj();
-extern "C" int _ZN7android6Parcel13writeString16EPKtj() {
-    return _ZN7android6Parcel13writeString16EPKDsj();
+/* status_t android::Fence::wait(int timeout); */
+extern "C" int _ZN7android5Fence4waitEi(int timeout);
+
+/* status_t android::Fence::wait(unsigned int timeout); */
+extern "C" int _ZN7android5Fence4waitEj(unsigned int timeout)
+{
+    return _ZN7android5Fence4waitEi(static_cast<int>(timeout));
 }
