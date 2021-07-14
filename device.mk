@@ -47,6 +47,20 @@ TARGET_SCREEN_WIDTH := 1080
 
 
 
+# Samsung symbols
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
+
+# Macloader
+PRODUCT_PACKAGES += \
+    macloader
+
+
+# Display
+PRODUCT_PACKAGES += \
+    SamsungServiceMode
+
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/gps.xml

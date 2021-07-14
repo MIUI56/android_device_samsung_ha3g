@@ -2,7 +2,7 @@ import /system/vendor/etc/init/hw/init.baseband.rc
 
 on init
 
-export LD_SHIM_LIBS "/system/vendor/bin/gpsd|libdmitry.so"
+export LD_SHIM_LIBS "/system/vendor/bin/gpsd|libsamsung_symbols.so"
 
 on post-fs-data
 
